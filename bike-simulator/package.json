@@ -1,0 +1,16 @@
+{
+  "name": "smart-bike-simulator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Smart Motorcycle 4G/LTE IoT Controller and Hardware Simulator",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "jpeg-js": "^0.4.4",
+    "mqtt": "^5.10.4"
+  }
+}

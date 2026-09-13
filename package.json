@@ -1,0 +1,17 @@
+{
+  "name": "smart-motorcycle-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-Stack Connected Smart Motorcycle Platform with 4G/LTE IoT Architecture",
+  "scripts": {
+    "dev": "node dev.js",
+    "start": "node dev.js",
+    "dev:all": "node dev.js",
+    "test": "npm --prefix backend test",
+    "seed": "npm --prefix backend run seed",
+    "dev:backend": "npm --prefix backend start",
+    "dev:simulator": "npm --prefix bike-simulator start",
+    "dev:mobile": "npm --prefix mobile-app run dev",
+    "dev:speedometer": "npm --prefix speedometer run dev"
+  }
+}

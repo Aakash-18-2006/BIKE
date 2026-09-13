@@ -1,0 +1,2262 @@
+/* ================================================= */
+/* SPEEDOMETER CLUSTER - PREMIUM BLACK & WHITE THEME */
+/* Inspired by Porsche / Polestar / Audi Virtual HUD */
+/* ================================================= */
+
+:root {
+  --primary-accent: #ffffff;
+  --secondary-accent: #a0a0a0;
+  --warning-amber: #ff9f0a;
+  --danger-red: #ff453a;
+  --safe-white: #ffffff;
+  --bg-tft: #000000;
+  --bg-panel: rgba(14, 14, 16, 0.92);
+  --border-tft: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.28);
+  --text-bright: #ffffff;
+  --text-dim: #8e8e93;
+  --text-muted: #48484a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-tft);
+  color: var(--text-bright);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Master Cockpit Viewport */
+.cluster-viewport {
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 15%, rgba(255, 255, 255, 0.03) 0%, transparent 65%),
+              #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 28px;
+  position: relative;
+  overflow: hidden;
+  color: var(--text-bright);
+}
+
+/* ================================================= */
+/* 1. STANDBY SCREEN (MINIMALIST LUXURY)             */
+/* ================================================= */
+.standby-screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 60%),
+              #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 48px;
+  z-index: 50;
+  animation: fadeIn 0.3s ease;
+}
+
+.standby-top-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.standby-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.standby-logo-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.standby-brand-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.standby-status-pills {
+  display: flex;
+  gap: 12px;
+}
+
+.standby-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-tft);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-dim);
+}
+
+.standby-center-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.standby-clock {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 88px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.standby-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+.standby-battery-gauge {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-tft);
+  padding: 8px 22px;
+  border-radius: 30px;
+}
+
+.standby-start-btn {
+  width: 280px;
+  padding: 18px 0;
+  border-radius: 28px;
+  background: #ffffff;
+  border: none;
+  color: #000000;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.25), 0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.standby-start-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.45);
+}
+
+.standby-start-btn:active {
+  transform: scale(0.97);
+}
+
+/* ================================================= */
+/* 2. PIN AUTHENTICATION SCREEN                      */
+/* ================================================= */
+.pin-auth-screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 36px;
+  z-index: 60;
+  animation: fadeIn 0.2s ease;
+}
+
+.pin-header {
+  text-align: center;
+}
+
+.pin-header-welcome {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.pin-header-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin-top: 4px;
+}
+
+.pin-dots-container {
+  display: flex;
+  gap: 18px;
+  margin: 16px 0;
+}
+
+.pin-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.pin-dot.filled {
+  background: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.6);
+  transform: scale(1.15);
+}
+
+.pin-dots-container.shake {
+  animation: pinShake 0.4s ease;
+}
+
+@keyframes pinShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-10px); }
+  40%, 80% { transform: translateX(10px); }
+}
+
+.pin-error-msg {
+  font-size: 12px;
+  color: var(--danger-red);
+  font-weight: 600;
+  min-height: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 96px);
+  gap: 12px;
+  justify-content: center;
+}
+
+.keypad-btn {
+  height: 56px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-tft);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.keypad-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.keypad-btn:active:not(:disabled) {
+  transform: scale(0.95);
+  background: #ffffff;
+  color: #000000;
+}
+
+.keypad-btn-action {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-dim);
+}
+
+.keypad-btn-action:hover {
+  color: #ffffff;
+}
+
+.pin-footer-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 310px;
+}
+
+.pin-back-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pin-back-btn:hover {
+  color: #ffffff;
+}
+
+/* ================================================= */
+/* 3. STARTUP BOOT ANIMATION                         */
+/* ================================================= */
+.boot-screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 70;
+  animation: fadeIn 0.2s ease;
+}
+
+.boot-logo-sweep {
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: #000000;
+  box-shadow: 0 0 45px rgba(255, 255, 255, 0.35);
+  animation: bootPulse 1.2s infinite alternate ease-in-out;
+}
+
+@keyframes bootPulse {
+  from { transform: scale(0.96); box-shadow: 0 0 25px rgba(255, 255, 255, 0.2); }
+  to { transform: scale(1.04); box-shadow: 0 0 50px rgba(255, 255, 255, 0.5); }
+}
+
+.boot-stage-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-top: 28px;
+  text-transform: uppercase;
+}
+
+.boot-stage-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+  margin-top: 8px;
+}
+
+.boot-progress-bar {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  transition: width 0.3s ease;
+}
+
+/* ================================================= */
+/* 4. MAIN TFT COCKPIT DASHBOARD                     */
+/* ================================================= */
+.cluster-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  border-bottom: 1px solid var(--border-tft);
+  padding-bottom: 8px;
+}
+
+.indicator-signal {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 1px;
+}
+
+.indicator-signal.active {
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+  animation: blink 0.7s infinite alternate ease-in-out;
+}
+
+/* Central Navbar Information Ribbon: CLOCK | ODO | TRIP A */
+.navbar-info-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 4px 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.navbar-info-divider {
+  color: rgba(255, 255, 255, 0.18);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.navbar-info-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.navbar-info-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.navbar-info-val {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.navbar-info-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: lowercase;
+}
+
+.interactive-trip {
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.interactive-trip:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navbar-trip-reset-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--text-dim);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 1px 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: 2px;
+}
+
+.navbar-trip-reset-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Monochrome Vector Telltales Housing */
+.telltale-cluster-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #0d0d0f;
+  border: 1px solid var(--border-tft);
+  padding: 4px 14px;
+  border-radius: 24px;
+}
+
+.telltale-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.telltale-icon-wrapper:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.telltale-icon-wrapper .telltale-svg {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Inactive State: Precision muted grey */
+.telltale-icon-wrapper.inactive {
+  color: #48484a;
+}
+
+/* Active State: High-contrast pure white */
+.telltale-icon-wrapper.active-high-beam {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+
+.telltale-icon-wrapper.active-high-beam .telltale-svg {
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+  transform: scale(1.05);
+}
+
+/* Restrained Amber Warnings */
+.telltale-icon-wrapper.active-low-fuel,
+.telltale-icon-wrapper.active-abs-warn,
+.telltale-icon-wrapper.active-tc-warn {
+  color: var(--warning-amber);
+  background: rgba(255, 159, 10, 0.18);
+  border-color: rgba(255, 159, 10, 0.6);
+  box-shadow: 0 0 16px rgba(255, 159, 10, 0.45);
+}
+
+.telltale-icon-wrapper.active-low-fuel .telltale-svg,
+.telltale-icon-wrapper.active-abs-warn .telltale-svg,
+.telltale-icon-wrapper.active-tc-warn .telltale-svg {
+  filter: drop-shadow(0 0 6px rgba(255, 159, 10, 0.9));
+}
+
+/* Restrained Red Critical Warnings */
+.telltale-icon-wrapper.active-battery-warn,
+.telltale-icon-wrapper.active-sidestand-warn {
+  color: var(--danger-red);
+  background: rgba(255, 69, 58, 0.2);
+  border-color: rgba(255, 69, 58, 0.65);
+  box-shadow: 0 0 18px rgba(255, 69, 58, 0.5);
+  animation: pulseWarning 1.2s infinite ease-in-out;
+}
+
+.telltale-icon-wrapper.active-battery-warn .telltale-svg,
+.telltale-icon-wrapper.active-sidestand-warn .telltale-svg {
+  filter: drop-shadow(0 0 6px rgba(255, 69, 58, 1));
+}
+
+@keyframes pulseWarning {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.critical-pulse {
+  animation: criticalWarningFlash 0.7s infinite alternate ease-in-out !important;
+}
+
+@keyframes criticalWarningFlash {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; transform: scale(1.06); }
+}
+
+/* Intelligent Safety-Critical Warning Priority Ribbon */
+.safety-priority-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #0d0d0f;
+  border: 1px solid rgba(255, 69, 58, 0.5);
+  border-radius: 20px;
+  padding: 4px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 0 12px rgba(255, 69, 58, 0.2);
+  animation: fadeIn 0.2s ease;
+  z-index: 12;
+}
+
+.safety-banner-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.safety-active-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.safety-priority-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+.priority-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  animation: blink 0.7s infinite alternate;
+}
+
+.priority-lead-text {
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.priority-count-badge {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 8px;
+}
+
+/* Diagnostic Quick Tester Bar */
+.cluster-diagnostic-toolbar {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #0c0c0e;
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  padding: 4px 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+}
+
+.diag-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #ffffff;
+  font-weight: 700;
+  padding-right: 6px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.diag-toggle-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-tft);
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.diag-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.diag-toggle-btn.active {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+}
+
+.diag-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 12px;
+}
+
+/* Main Stage & Speedometer Cockpit */
+.cluster-main-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  margin: 8px 0;
+}
+
+.tft-cockpit-split {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: 18px;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 110px);
+}
+
+@media (max-width: 900px) {
+  .tft-cockpit-split {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    overflow-y: auto;
+  }
+}
+
+/* Left Hero Speed & Sweeping Tachometer Container */
+.tft-speed-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #09090b;
+  border: 1px solid var(--border-tft);
+  border-radius: 20px;
+  padding: 16px 20px;
+  min-height: 280px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+/* Speed Top Row: Battery pill, scooter icon, mode badge */
+.tft-speed-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 6px;
+  z-index: 5;
+}
+
+.tft-battery-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-tft);
+  border-radius: 16px;
+  padding: 3px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tft-scooter-icon {
+  width: 28px;
+  height: 20px;
+  color: #ffffff;
+}
+
+.tft-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 3px 12px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: #000000;
+  letter-spacing: 1px;
+}
+
+/* Big Hero Speed Digits (Extremely clear, readable at a glance) */
+.tft-hero-speed-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  z-index: 5;
+  margin: 4px 0;
+}
+
+.tft-speed-large {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 116px;
+  font-weight: 900;
+  line-height: 0.85;
+  letter-spacing: -3px;
+  color: #ffffff;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+.tft-speed-unit-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+}
+
+/* Stability Gauge */
+.tft-stability-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  z-index: 5;
+}
+
+.stability-arc-gauge {
+  width: 86px;
+  height: 46px;
+  position: relative;
+  overflow: hidden;
+}
+
+.stability-arc-gauge svg {
+  width: 86px;
+  height: 86px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.stability-label-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.stability-label-tag {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.stability-label-sub {
+  font-size: 9px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+/* Navigation Card on TFT */
+.safe-routes-card {
+  background: #09090b;
+  border: 1px solid var(--border-tft);
+  border-radius: 20px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.9);
+  height: 100%;
+  min-height: 280px;
+  justify-content: space-between;
+}
+
+.safe-routes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 4px;
+}
+
+.safe-routes-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.safe-routes-p-badge {
+  background: #ffffff;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-left: 4px;
+}
+
+.safe-routes-coords {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.safe-routes-map-viewport {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-tft);
+  background: #050505;
+}
+
+.nav-instruction-banner {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(12, 12, 14, 0.96);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-arrow-badge {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.nav-text-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-instruction-bold {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+.nav-road-subtitle {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.safe-routes-footer-chip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+.footer-odo {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.footer-status-tag {
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+/* Bottom Cockpit Dock */
+.cluster-bottom-dock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid var(--border-tft);
+  padding-top: 10px;
+}
+
+.dock-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.mode-selector-dock {
+  display: flex;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 4px;
+  border-radius: 20px;
+  border: 1px solid var(--border-tft);
+}
+
+.mode-btn-pill {
+  padding: 5px 12px;
+  border-radius: 16px;
+  border: none;
+  background: transparent;
+  color: var(--text-dim);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mode-btn-pill.active {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}
+
+.tft-lock-sleep-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-tft);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tft-lock-sleep-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes blink {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+/* ================================================= */
+/* 5. CENTERED ARC SPEEDOMETER CLUSTER               */
+/* ================================================= */
+/* Centered Modern Motorcycle Cockpit Stage */
+.tft-centered-cluster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 56px;
+}
+
+.cluster-vitals-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 780px;
+  padding: 2px 12px;
+  margin-bottom: 10px;
+}
+
+.vital-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.vital-icon {
+  font-size: 13px;
+}
+
+.vital-val {
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.vital-mode-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-tft);
+  padding: 3px 12px;
+  border-radius: 12px;
+}
+
+.vital-mode-label {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.vital-mode-val {
+  font-size: 11px;
+  color: #ffffff;
+  font-weight: 800;
+  font-family: 'Chakra Petch', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+/* ================================================= */
+/* 5. HERO CENTRAL INFORMATION DISPLAY (CLOCK, TRIP A, ODO) */
+/* ================================================= */
+/* Symmetrical Automotive Cockpit Flank Layout: [Left Battery] [Center Arc Speedometer] [Right Fuel] */
+.tft-cockpit-flank-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Arc Speedometer Stage */
+.arc-speedometer-stage {
+  position: relative;
+  width: 550px;
+  height: 384px;
+  max-width: 95vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.arc-speedometer-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+/* Sockets for Status Icons around the Arc */
+.arc-telltale-socket {
+  position: absolute;
+  z-index: 15;
+  transition: transform 0.2s ease;
+}
+
+.arc-telltale-socket:hover {
+  transform: scale(1.08);
+}
+
+.arc-telltale-socket.socket-top-left {
+  top: 18px;
+  left: 45px;
+}
+
+.arc-telltale-socket.socket-top-right {
+  top: 18px;
+  right: 45px;
+}
+
+.arc-telltale-socket.socket-bottom-left {
+  bottom: -46px;
+  left: calc(50% - 95px);
+}
+
+.arc-telltale-socket.socket-bottom-right {
+  bottom: -46px;
+  right: calc(50% - 95px);
+}
+
+/* Visual Center Readout inside the Arc */
+.arc-center-content {
+  position: absolute;
+  top: 48.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  text-align: center;
+  z-index: 12;
+}
+
+.arc-speed-number {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 130px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0 32px rgba(255, 255, 255, 0.35);
+}
+
+.arc-speed-unit {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-dim);
+  letter-spacing: 0.25em;
+  margin-top: 5px;
+  text-transform: uppercase;
+}
+
+/* ================================================= */
+/* VERTICAL GAUGES: BATTERY (LEFT) & FUEL (RIGHT)    */
+/* ================================================= */
+.vertical-gauge-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 58px;
+  height: 370px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 18px;
+  padding: 12px 6px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.vertical-gauge-column:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.vertical-gauge-icon-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.vertical-gauge-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1;
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* Left side has ticks on the right facing inwards, Right side has ticks on the left facing inwards */
+.side-left .vertical-gauge-body {
+  flex-direction: row;
+}
+
+.side-right .vertical-gauge-body {
+  flex-direction: row-reverse;
+}
+
+.vertical-gauge-track {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3px;
+  width: 14px;
+  height: 225px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 4px 3px;
+}
+
+.vertical-gauge-segment {
+  width: 100%;
+  flex: 1;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.vertical-gauge-segment.inactive {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.vertical-gauge-segment.active {
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.5);
+}
+
+/* Low warning state */
+.vertical-gauge-column.gauge-warning {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.vertical-gauge-segment.segment-warning {
+  background: #ffffff;
+  animation: segmentPulse 0.9s infinite alternate ease-in-out;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.9);
+}
+
+@keyframes segmentPulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; filter: drop-shadow(0 0 8px #ffffff); }
+}
+
+.vertical-gauge-scale {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 225px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.scale-mark {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.side-left .scale-mark {
+  flex-direction: row;
+}
+
+.side-right .scale-mark {
+  flex-direction: row-reverse;
+}
+
+.scale-tick {
+  width: 4px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.vertical-gauge-footer-label {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ================================================= */
+/* SEPARATE FLANK RANGE DISPLAYS: EV RANGE & FUEL RANGE */
+/* ================================================= */
+.flank-gauge-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tft-range-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 5px 12px;
+  min-width: 108px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.tft-range-display:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.tft-range-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tft-range-val {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.tft-range-unit {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  text-transform: lowercase;
+}
+
+/* MAP BUTTON IN BOTTOM DOCK */
+.tft-map-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: #000000;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.35);
+  transition: all 0.15s ease;
+}
+
+.tft-map-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 22px rgba(255, 255, 255, 0.6);
+}
+
+.tft-map-btn:active {
+  transform: scale(0.96);
+}
+
+.map-btn-icon {
+  font-size: 12px;
+}
+
+/* Small Active Navigation Pill on main speedometer */
+.tft-nav-pill-indicator {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tft-nav-pill-indicator:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+.nav-turn-arrow-mini {
+  font-size: 14px;
+}
+/* Temporary Throttle Test Button */
+.tft-throttle-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+  letter-spacing: 0.08em;
+  user-select: none;
+  touch-action: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.15);
+}
+
+.tft-throttle-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.tft-throttle-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 28px rgba(255, 255, 255, 0.9);
+  transform: scale(0.97);
+}
+
+.throttle-btn-dot {
+  font-size: 10px;
+  color: #30d158;
+}
+
+.tft-throttle-btn.active .throttle-btn-dot {
+  color: #ff3b30;
+  animation: blink 0.5s infinite alternate;
+}
+
+.throttle-btn-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 900;
+  background: #000000;
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: 6px;
+  margin-left: 2px;
+}
+
+/* ================================================= */
+/* 6. DEDICATED FULL-SCREEN MAP & NAVIGATION VIEW    */
+/* ================================================= */
+.dedicated-map-screen {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  min-height: calc(100vh - 40px);
+  background: #000000;
+  animation: fadeIn 0.2s ease;
+}
+
+.map-screen-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: #09090b;
+  border-bottom: 1px solid var(--border-tft);
+  z-index: 20;
+}
+
+.map-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  background: #000000;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.map-back-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+}
+
+.map-back-arrow {
+  font-size: 14px;
+}
+
+.map-road-title-box {
+  text-align: center;
+}
+
+.map-road-name {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.map-dest-sub {
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 2px;
+}
+
+.map-gps-status-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-tft);
+  padding: 5px 12px;
+  border-radius: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #ffffff;
+}
+
+.gps-live-dot {
+  color: #ffffff;
+  animation: blink 1s infinite alternate;
+}
+
+.map-screen-viewport {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  overflow: hidden;
+  background: #050507;
+  border: 1px solid var(--border-tft);
+}
+
+.map-speed-watermark {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--border-tft);
+  padding: 6px 14px;
+  border-radius: 12px;
+  z-index: 25;
+}
+
+.watermark-val {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.watermark-unit {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-dim);
+}
+
+.map-coords-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.map-screen-turn-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #09090b;
+  border-top: 1px solid var(--border-tft);
+  z-index: 20;
+}
+
+.turn-arrow-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 900;
+  flex-shrink: 0;
+  margin-right: 14px;
+}
+
+.turn-info-col {
+  flex: 1;
+}
+
+.turn-instruction-text {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.turn-road-target {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+.turn-metrics-row {
+  display: flex;
+  gap: 20px;
+}
+
+.turn-metric-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.metric-label {
+  font-size: 9px;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.metric-value {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 15px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-top: 1px;
+}
+
+.metric-value.limit {
+  border: 2px solid #ff3b30;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+/* ================================================= */
+/* 6. CENTRAL NAVIGATION MODE & MAPPLS HUD           */
+/* ================================================= */
+.tft-navigation-stage {
+  position: relative;
+  width: 580px;
+  height: 384px;
+  max-width: 95vw;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #060608;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 229, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.tft-map-viewport-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #060608;
+}
+
+#tft-mappls-map-slot,
+.tft-mappls-map-canvas-slot,
+.tft-google-map-canvas-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  z-index: 1;
+  background-color: #060608;
+}
+
+/* Error Banner for Mappls Initialization Failures */
+.tft-mappls-error-banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  background: rgba(20, 5, 5, 0.95);
+  border: 1px solid #ff3b30;
+  box-shadow: 0 0 20px rgba(255, 59, 48, 0.4);
+  padding: 16px 20px;
+  border-radius: 12px;
+  max-width: 85%;
+  text-align: center;
+  pointer-events: auto;
+}
+
+.tft-mappls-error-banner .tft-error-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ff3b30;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.tft-mappls-error-banner .tft-error-detail {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #ffffff;
+  word-break: break-word;
+}
+
+/* Follow Bike / Recenter Button */
+.tft-map-recenter-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 229, 255, 0.16);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.tft-map-recenter-btn:hover {
+  background: #00e5ff;
+  color: #000000;
+  box-shadow: 0 0 18px rgba(0, 229, 255, 0.6);
+}
+
+.recenter-crosshair {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.tft-nav-map-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: block;
+}
+
+/* Overlaid Turn-by-Turn Guidance Card */
+.tft-nav-turn-overlay {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tft-nav-turn-card {
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 10px 14px;
+  min-width: 210px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  pointer-events: auto;
+}
+
+.tft-turn-main-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tft-turn-arrow-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  color: #00e5ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 14px rgba(0, 229, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.tft-turn-arrow-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.tft-turn-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.tft-turn-distance {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.tft-turn-street {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00e5ff;
+  letter-spacing: 0.04em;
+  margin-top: 3px;
+  text-transform: uppercase;
+}
+
+.tft-turn-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+}
+
+.tft-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.tft-meta-label {
+  color: var(--text-dim);
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.tft-meta-val {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.tft-meta-divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* Overlaid Navigation Status Bar (Top Right) */
+.tft-nav-status-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tft-nav-status-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.tft-nav-dest-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(12, 12, 16, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+
+.tft-nav-dest-icon {
+  color: #ff3b30;
+  font-size: 13px;
+  animation: blink 1s infinite alternate;
+}
+
+.tft-nav-dest-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.tft-nav-dest-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.tft-nav-dest-target {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+}
+
+.tft-nav-dest-citystate {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  color: #00F0FF;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.tft-nav-speed-limit {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid #ff3b30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  box-shadow: 0 0 10px rgba(255, 59, 48, 0.4);
+}
+
+.tft-limit-text {
+  font-size: 5.5px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: 'Inter', sans-serif;
+}
+
+.tft-limit-number {
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1;
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.tft-nav-gps-chip {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--text-dim);
+}
+
+.tft-gps-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #30d158;
+  box-shadow: 0 0 6px #30d158;
+}
+
+.tft-nav-close-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tft-nav-close-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+/* Map Engine Status Badge (Bottom-Left of Map) */
+.tft-map-engine-badge {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(10, 10, 14, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 4px 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  user-select: none;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.engine-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.tft-map-engine-badge.status-live {
+  color: #30d158;
+  border-color: rgba(48, 209, 88, 0.35);
+}
+
+.tft-map-engine-badge.status-live .engine-status-dot {
+  background: #30d158;
+  box-shadow: 0 0 8px #30d158;
+}
+
+.tft-map-engine-badge.status-demo {
+  color: #00e5ff;
+  border-color: rgba(0, 229, 255, 0.3);
+}
+
+.tft-map-engine-badge.status-demo .engine-status-dot {
+  background: #00e5ff;
+  box-shadow: 0 0 8px #00e5ff;
+}
+
+.tft-map-engine-badge.status-offline {
+  color: #ff9f0a;
+  border-color: rgba(255, 159, 10, 0.35);
+}
+
+.tft-map-engine-badge.status-offline .engine-status-dot {
+  background: #ff9f0a;
+  box-shadow: 0 0 8px #ff9f0a;
+}
+
+/* Floating Recenter Button on TFT Map */
+.tft-map-recenter-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(10, 15, 25, 0.92);
+  border: 1px solid #00F0FF;
+  color: #00F0FF;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(0, 240, 255, 0.35);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.tft-map-recenter-btn:hover {
+  background: #00F0FF;
+  color: #000000;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.8);
+}
+
+/* Arrived Destination Styling */
+.tft-turn-arrow-badge.action-arrived {
+  background: rgba(48, 209, 88, 0.18);
+  border-color: rgba(48, 209, 88, 0.5);
+  color: #30d158;
+  box-shadow: 0 0 16px rgba(48, 209, 88, 0.4);
+}
+
+.tft-turn-distance.arrived-text {
+  font-size: 18px;
+  color: #30d158;
+  letter-spacing: 0.05em;
+}
+
+
+
