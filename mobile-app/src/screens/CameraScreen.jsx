@@ -32,7 +32,11 @@ export function CameraScreen() {
   const webcamStreamRef = useRef(null);
   const webcamVideoRef = useRef(null);
 
-  const API_BASE = 'http://localhost:5000/api';
+  const RAW_BACKEND_URL = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL)
+    || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_BACKEND_URL)
+    || 'http://localhost:5000';
+  const BACKEND_BASE = RAW_BACKEND_URL.replace(/\/+$/, '');
+  const API_BASE = BACKEND_BASE.endsWith('/api') ? BACKEND_BASE : `${BACKEND_BASE}/api`;
 
   // Stop all webcam tracks completely and release hardware
   const stopWebcam = useCallback(() => {

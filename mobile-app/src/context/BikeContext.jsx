@@ -5,9 +5,14 @@ import { tftNavigationBridge } from '../services/tftNavigationBridge.js';
 
 const BikeContext = createContext();
 
-const API_BASE = 'http://localhost:5000/api';
-const SOCKET_URL = 'http://localhost:5000';
-const SIMULATOR_URL = 'http://localhost:5005';
+const RAW_BACKEND_URL = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_URL)
+  || (typeof import.meta !== 'undefined' && import.meta.env?.VITE_BACKEND_URL)
+  || 'http://localhost:5000';
+
+const BACKEND_BASE = RAW_BACKEND_URL.replace(/\/+$/, '');
+const API_BASE = BACKEND_BASE.endsWith('/api') ? BACKEND_BASE : `${BACKEND_BASE}/api`;
+const SOCKET_URL = BACKEND_BASE.endsWith('/api') ? BACKEND_BASE.slice(0, -4) : BACKEND_BASE;
+const SIMULATOR_URL = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_SIMULATOR_URL) || 'http://localhost:5005';
 
 export function BikeProvider({ children }) {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
